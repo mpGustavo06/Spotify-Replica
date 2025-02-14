@@ -9,7 +9,7 @@ const Song = () => {
   const { id } = useParams();
 
   const { name, image, duration, artist, audio } = songsArray.find(
-    (currentSongObj) => currentSongObj.id === Number(id)
+    (currentSongObj) => currentSongObj._id === id
   );
 
   const artistObj = artistArray.find(
@@ -24,8 +24,8 @@ const Song = () => {
 
   const randomIndex2 = Math.floor(Math.random() * (songsArray.length - 1));
 
-  const randomIdFromArtist = songsArray[randomIndex].id;
-  const randomId2FromArtist = songsArray[randomIndex2].id;
+  const randomIdFromArtist = songsArray[randomIndex]._id;
+  const randomId2FromArtist = songsArray[randomIndex2]._id;
 
   return (
     <div className="song">
@@ -36,7 +36,7 @@ const Song = () => {
       </div>
 
       <div className="song__bar">
-        <Link to={`/artist/${artistObj.id}`} className="song__artist-image">
+        <Link to={`/artist/${artistObj._id}`} className="song__artist-image">
           <img
             width={75}
             height={75}
@@ -49,6 +49,7 @@ const Song = () => {
           duration={duration}
           randomIdFromArtist={randomIdFromArtist}
           randomId2FromArtist={randomId2FromArtist}
+          audio={audio}
         />
 
         <div>
